@@ -4,30 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.appknox.mfva.MainActivity">
+    tools:context="com.appknox.mfva.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <Button
         android:id="@+id/buttonApi"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Perform API requests"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.050000012"
-        app:layout_constraintHorizontal_bias="0.505" />
+        android:text="Perform API requests"/>
 
     <Button
         android:id="@+id/buttonWebView"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Open WebView"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17000002"
-        app:layout_constraintHorizontal_bias="0.501" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonApi" />
 
+    <Button
+        android:id="@+id/buttonSharedPref"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Add &amp; retrieve shared preference"
+        app:layout_constraintTop_toBottomOf="@+id/buttonWebView" />
+
+    <Button
+        android:id="@+id/buttonDebugLog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Make a debug log statement"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSharedPref" />
 </android.support.constraint.ConstraintLayout>
