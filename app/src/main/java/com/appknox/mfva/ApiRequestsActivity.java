@@ -92,6 +92,16 @@ public class ApiRequestsActivity extends AppCompatActivity {
                             Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
                         }
 
+                        if(token == null) {
+                            textViewLogs.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewLogs.append("Unable to authenticate!\n");
+                                }
+                            });
+                            return;
+                        }
+
                         // Get user
                         Request request2 = new Request.Builder()
                                 .header("X-Auth-Token", token)

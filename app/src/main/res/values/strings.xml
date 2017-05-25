@@ -7,9 +7,7 @@
     <string name="action_about">About</string>
 
     <string name="about_title">MFVA</string>
-    <string name="about_message">Licensed under the terms of GPLv3.
-        Source code is available <a href="https://github.com/viren-nadkarni/mfva.git">here</a>.
-    </string>
+    <string name="about_message">Licensed under the terms of GPLv3.\nSource code is available <a href="https://github.com/viren-nadkarni/mfva.git">here</a>.\n&#169; 2017, Viren Nadkarni, XYSec Labs</string>
 
     <string name="button_debug_log">Log a fortune quote</string>
     <string name="button_shared_pref">Add &amp; retrieve a shared preference</string>
