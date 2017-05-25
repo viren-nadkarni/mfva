@@ -15,4 +15,5 @@
     <string name="button_api_requests">API requests</string>
     <string name="button_start_api_requests">Start API requests</string>
 
+    <string name="permission_custom">Custom Permission</string>
 </resources>

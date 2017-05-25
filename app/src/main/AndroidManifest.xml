@@ -40,6 +40,18 @@
         <activity
             android:name=".ExportedActivity"
             android:exported="true" />
+
+        <service
+            android:name=".ExportedService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <permission
+            android:description="@string/permission_custom"
+            android:label="@string/permission_custom"
+            android:name="com.appknox.mfva.CustomPermission"
+            android:permissionGroup="string"
+            android:protectionLevel="dangerous" />
     </application>
 
 </manifest>
