@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.appknox.mfva.MainActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="fill_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar_main"
         android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:elevation="4dp"
         android:theme="@style/AppTheme"
         app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
     <Button
         android:id="@+id/buttonApi"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Make API requests"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+        android:text="@string/button_api_requests"/>
 
     <Button
         android:id="@+id/buttonWebView"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Open WebView"
-        app:layout_constraintTop_toBottomOf="@+id/buttonApi" />
+        android:text="@string/button_webview"/>
 
     <Button
         android:id="@+id/buttonSharedPref"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add &amp; retrieve a shared preference"
-        app:layout_constraintTop_toBottomOf="@+id/buttonWebView" />
+        android:text="@string/button_shared_pref"/>
 
     <Button
         android:id="@+id/buttonDebugLog"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add a quote to debug logs"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSharedPref" />
-</android.support.constraint.ConstraintLayout>
+        android:text="@string/button_debug_log"/>
+</LinearLayout>

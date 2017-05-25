@@ -14,58 +14,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.IOException;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.Callback;
-import okhttp3.Call;
-
 
 public class MainActivity extends AppCompatActivity {
-    private Button buttonApi, buttonWebView, buttonSharedPref, buttonDebugLog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
         final Context context = this;
 
-        buttonApi = (Button) findViewById(R.id.buttonApi);
+        Button buttonApi = (Button) findViewById(R.id.buttonApi);
         buttonApi.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View v) {
-                OkHttpClient client = new OkHttpClient();
-                try {
-                    Request request = new Request.Builder().url("http://vapi.appknox.io/").build();
-                    client.newCall(request).enqueue(new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        @Override
-                        public void onResponse(Call call, final Response response) throws IOException {
-                            if (!response.isSuccessful()) {
-                                throw new IOException("Response: " + response);
-                            }
-                            Snackbar.make(v, "Success", Snackbar.LENGTH_SHORT).show();
-                        }
-                    });
-
-                } catch (Exception e) {
-                    Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
-                }
-
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ApiRequestsActivity.class);
+                startActivity(intent);
             }
         });
 
-        buttonWebView = (Button) findViewById(R.id.buttonWebView);
+        Button buttonWebView = (Button) findViewById(R.id.buttonWebView);
         buttonWebView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonSharedPref = (Button) findViewById(R.id.buttonSharedPref);
+        Button buttonSharedPref = (Button) findViewById(R.id.buttonSharedPref);
         buttonSharedPref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonDebugLog = (Button) findViewById(R.id.buttonDebugLog);
+        Button buttonDebugLog = (Button) findViewById(R.id.buttonDebugLog);
         buttonDebugLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
+        getMenuInflater().inflate(R.menu.toolbar_main, menu);
         return true;
     }
 

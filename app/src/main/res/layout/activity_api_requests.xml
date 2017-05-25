@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.appknox.mfva.ApiRequestsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_api_requests"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
+
+    <ScrollView
+        android:id="@+id/scrollview_api_requests"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_below="@id/toolbar_api_requests"
+        android:fillViewport="true">
+        <TextView
+            android:id="@+id/textview_api_requests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:typeface="monospace"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black" />
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_start_api_requests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/scrollview_api_requests"
+        android:clickable="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
+        app:srcCompat="@android:drawable/ic_media_play"/>
+</RelativeLayout>
