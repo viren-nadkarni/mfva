@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.about_message).setTitle(R.string.about_title);
                 builder.create().show();
-
                 return true;
 
             default:

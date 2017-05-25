@@ -6,21 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
+import java.io.IOException;
+import java.util.UUID;
+import java.util.Random;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class ApiRequestsActivity extends AppCompatActivity {
 
@@ -44,6 +42,8 @@ public class ApiRequestsActivity extends AppCompatActivity {
                         final OkHttpClient client = new OkHttpClient();
                         final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
+                        String token = null;
+
                         // Connection check
                         Request request0 = new Request.Builder()
                                 .url("http://vapi.appknox.io")
@@ -52,7 +52,8 @@ public class ApiRequestsActivity extends AppCompatActivity {
                             textViewLogs.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    textViewLogs.append("Connecting to server...\n");
+                                    textViewLogs.append("Connecting to vulnerable server...\n");
+                                    textViewLogs.append("  hostname:vapi.appknox.io\n");
                                 }
                             });
                             client.newCall(request0).execute();
@@ -61,10 +62,10 @@ public class ApiRequestsActivity extends AppCompatActivity {
                         }
 
                         // Authenticate
-                        RequestBody body = RequestBody.create(JSON, "{\"auth\":{\"passwordCredentials\":{\"username\":\"user1\",\"password\":\"pass1\"}}}");
+                        RequestBody body1 = RequestBody.create(JSON, "{\"auth\":{\"passwordCredentials\":{\"username\":\"user1\",\"password\":\"pass1\"}}}");
                         Request request1 = new Request.Builder()
                                 .url("http://vapi.appknox.io/tokens")
-                                .post(body)
+                                .post(body1)
                                 .build();
                         try {
                             textViewLogs.post(new Runnable() {
@@ -73,17 +74,112 @@ public class ApiRequestsActivity extends AppCompatActivity {
                                     textViewLogs.append("Authenticating...\n");
                                 }
                             });
-                            Response response = client.newCall(request1).execute();
-                            final String body0 = response.body().string();
+                            String response = client.newCall(request1).execute().body().string();
+                            JSONObject json1 = new JSONObject(response);
+                            token = json1.getJSONObject("access").getJSONObject("token").getString("id");
+
+                            final String token0 = token,
+                                    expiry0 = json1.getJSONObject("access").getJSONObject("token").getString("expires");
+
                             textViewLogs.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    textViewLogs.append(body0);
+                                    textViewLogs.append("  token:" + token0 + "\n");
+                                    textViewLogs.append("  expiry:" + expiry0 + "\n");
+                                }
+                            });
+                        } catch (IOException|JSONException e) {
+                            Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
+                        }
+
+                        // Get user
+                        Request request2 = new Request.Builder()
+                                .header("X-Auth-Token", token)
+                                .url("http://vapi.appknox.io/user/1")
+                                .build();
+                        try {
+                            textViewLogs.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewLogs.append("Fetching user ID...\n");
+                                }
+                            });
+                            JSONObject json2 = new JSONObject(client.newCall(request2).execute().body().string());
+                            final String id2 = json2.getJSONObject("response").getJSONObject("user").getString("id");
+                            textViewLogs.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewLogs.append("  userid:" + id2 + "\n");
+                                }
+                            });
+                        } catch (IOException|JSONException e) {
+                            Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
+                        }
+
+                        // Create user
+                        final String user5 = UUID.randomUUID().toString().substring(24, 32),
+                                password5 = "pass0";
+                        RequestBody body5 = RequestBody.create(JSON, "{\"user\":{\"username\":\"" +
+                                 user5 + "\",\"password\":\"" + password5 + "\"}}\n");
+                        Request request5 = new Request.Builder()
+                                .url("http://vapi.appknox.io/user")
+                                .post(body5)
+                                .build();
+                        try {
+                            textViewLogs.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewLogs.append("Adding new user...\n");
+                                }
+                            });
+                            client.newCall(request5).execute();
+                            textViewLogs.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewLogs.append("  username:" + user5 + "\n");
+                                    textViewLogs.append("  password:" + password5 + "\n");
                                 }
                             });
                         } catch (IOException e) {
                             Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
                         }
+
+                        // Get uptime
+                        try {
+
+                            textViewLogs.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewLogs.append("Getting server uptime...\n");
+                                }
+                            });
+                            Request request3 = new Request.Builder()
+                                    .header("X-Auth-Token", token)
+                                    .url("http://vapi.appknox.io/uptime")
+                                    .build();
+                            Request request4 = new Request.Builder()
+                                    .header("X-Auth-Token", token)
+                                    .url("http://vapi.appknox.io/uptime/s")
+                                    .build();
+                            client.newCall(request3).execute();
+                            JSONObject json4 = new JSONObject(client.newCall(request4).execute().body().string());
+                            final String uptime = json4.getJSONObject("response").getString("Output");
+                            textViewLogs.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewLogs.append("  system up since:" + uptime.trim() + "\n");
+                                }
+                            });
+                        } catch (IOException|JSONException e) {
+                            Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
+                        }
+
+                        textViewLogs.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                textViewLogs.append("Done!\n");
+                            }
+                        });
                     }
                 }).start();
             }

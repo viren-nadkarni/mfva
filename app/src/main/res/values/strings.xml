@@ -8,7 +8,7 @@
 
     <string name="about_title">MFVA</string>
     <string name="about_message">Licensed under the terms of GPLv3.
-        Source code available at https://github.com/viren-nadkarni/mfva.git.
+        Source code is available <a href="https://github.com/viren-nadkarni/mfva.git">here</a>.
     </string>
 
     <string name="button_debug_log">Log a fortune quote</string>
