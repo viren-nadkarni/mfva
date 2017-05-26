@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Context context = this;
 
-        Button buttonApi = (Button) findViewById(R.id.buttonApi);
+        Button buttonApi = (Button) findViewById(R.id.button_api_requests);
         buttonApi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonWebView = (Button) findViewById(R.id.buttonWebView);
+        Button buttonWebView = (Button) findViewById(R.id.button_webview);
         buttonWebView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonSharedPref = (Button) findViewById(R.id.buttonSharedPref);
+        Button buttonSharedPref = (Button) findViewById(R.id.button_shared_pref);
         buttonSharedPref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonDebugLog = (Button) findViewById(R.id.buttonDebugLog);
+        Button buttonDebugLog = (Button) findViewById(R.id.button_debug_log);
         buttonDebugLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +101,21 @@ public class MainActivity extends AppCompatActivity {
                 String quote = quotes[(int) (Math.random() * quotes.length)];
                 Log.d("YOLO", quote);
                 Snackbar.make(v, quote, Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        Button buttonCalculateChecksum = (Button) findViewById(R.id.button_calculate_checksum);
+        buttonCalculateChecksum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String quote = "The beauty of me is that I’m very rich. - Donald Trump";
+                try {
+                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    byte[] hash = md.digest(quote.getBytes());
+                    Snackbar.make(v, "MD5:" + hash.toString() + ": " + quote, Snackbar.LENGTH_SHORT).show();
+                } catch (NoSuchAlgorithmException e) {
+                    //pass
+                }
             }
         });
     }

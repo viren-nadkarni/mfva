@@ -17,26 +17,32 @@
         app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
 
     <Button
-        android:id="@+id/buttonApi"
+        android:id="@+id/button_api_requests"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_api_requests"/>
 
     <Button
-        android:id="@+id/buttonWebView"
+        android:id="@+id/button_webview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_webview"/>
 
     <Button
-        android:id="@+id/buttonSharedPref"
+        android:id="@+id/button_shared_pref"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_shared_pref"/>
 
     <Button
-        android:id="@+id/buttonDebugLog"
+        android:id="@+id/button_debug_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_debug_log"/>
+
+    <Button
+        android:id="@+id/button_calculate_checksum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_calculate_checksum"/>
 </LinearLayout>
