@@ -3,6 +3,7 @@
 
     <string name="activity_title_main">MFVA</string>
     <string name="activity_title_api_requests">API Requests</string>
+    <string name="activity_title_webview">WebView</string>
 
     <string name="action_about">About</string>
 
