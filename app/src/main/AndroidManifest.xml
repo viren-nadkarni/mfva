@@ -39,29 +39,51 @@
         </activity>
         <activity
             android:name=".ExportedActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:permission="com.appknox.mfva.CustomPermission" />
 
         <service
             android:name=".ExportedService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"/>
+        <service
+            android:name=".UnprotectedService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.appknox.mfva.CustomPermission" />
+
+        <receiver
+            android:name=".ExportedReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.INPUT_METHOD_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".UnprotectedReceiver"
+            android:exported="true"
+            android:permission="com.appknox.mfva.CustomPermission" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.INPUT_METHOD_CHANGED" />
+            </intent-filter>
+        </receiver>
 
         <permission
             android:description="@string/permission_custom"
             android:label="@string/permission_custom"
-            android:name="com.appknox.mfva.CustomPermission"
-            android:permissionGroup="string"
-            android:protectionLevel="dangerous" />
+            android:name="com.appknox.mfva.CustomPermission" />
 
         <provider
             android:name="com.appknox.mfva.StubProvider"
             android:authorities="com.example.android.datasync.provider"
             android:exported="true"
-            android:syncable="true">
+            android:syncable="true"
+            android:permission="com.appknox.mfva.CustomPermission" >
             <grant-uri-permission android:path="/"
                 android:pathPattern="*"
                 android:pathPrefix="/" />
         </provider>
     </application>
-
 </manifest>
