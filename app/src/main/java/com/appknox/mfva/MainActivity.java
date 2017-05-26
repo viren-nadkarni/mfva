@@ -14,8 +14,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -114,7 +125,27 @@ public class MainActivity extends AppCompatActivity {
                     byte[] hash = md.digest(quote.getBytes());
                     Snackbar.make(v, "MD5:" + hash.toString() + ": " + quote, Snackbar.LENGTH_SHORT).show();
                 } catch (NoSuchAlgorithmException e) {
-                    //pass
+                    Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        Button buttonEncrypt = (Button) findViewById(R.id.button_encrypt);
+        buttonEncrypt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String quote = "Even if you're not doing anything wrong, you are being watched and recorded. - Edward Snowden";
+
+                    SecretKey keyspec = new SecretKeySpec("Gangnam!".getBytes(), "DES");
+                    Cipher c = Cipher.getInstance("DES/ECB/ZeroBytePadding", "BC");
+                    c.init(Cipher.ENCRYPT_MODE, keyspec);
+                    c.doFinal(quote.getBytes());
+
+                    Snackbar.make(v, quote, Snackbar.LENGTH_SHORT).show();
+                } catch (NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException | BadPaddingException |
+                        IllegalBlockSizeException | InvalidKeyException e) {
+                    Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
