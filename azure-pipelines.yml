@@ -21,7 +21,7 @@ steps:
 
 - task: Bash@3
   env:
-    APPKNOX_ACCESS_TOKEN: $(APPKNOX_ACCESS_TOKEN)
+    APPKNOX_ACCESS_TOKEN: $(appknox_token)
   inputs:
     targetType: 'inline'
     script: |
