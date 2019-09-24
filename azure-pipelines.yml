@@ -29,7 +29,7 @@ steps:
       ls -la ./app/build/outputs/
       ls -la ./app/build/outputs/apk/
       curl -L https://github.com/appknox/appknox-go/releases/download/1.0.1/appknox-`uname -s`-x86_64 > appknox && chmod +x appknox
-      ./appknox upload ./app/build/outputs/apk/debug/app-debug.apk
+      ./appknox upload ./app/build/outputs/apk/app-debug.apk
       rm -f appknox
     failOnStderr: true
     noProfile: false
