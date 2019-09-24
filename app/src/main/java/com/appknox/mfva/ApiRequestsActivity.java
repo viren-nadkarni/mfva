@@ -52,7 +52,6 @@ public class ApiRequestsActivity extends AppCompatActivity {
                             textViewLogs.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    textViewLogs.append("Connecting to vulnerable server...\n");
                                     textViewLogs.append("  hostname:vapi.appknox.io\n");
                                 }
                             });
