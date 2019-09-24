@@ -29,3 +29,4 @@ steps:
       curl -L https://github.com/appknox/appknox-go/releases/download/0.0.2/appknox-`uname -s`-x86_64 > appknox && chmod +x appknox
       ./appknox upload $(Build.SourcesDirectory)/app/build/outputs/apk/debug/app-debug.apk
       rm -f appknox
+  
