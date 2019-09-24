@@ -25,9 +25,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      ls -la .
-      ls -la 
-      set -e $(build.ArtifactStagingDirectory)
+      ls -la ./app/build/outputs/apk/debug/
+      ls -la $(build.ArtifactStagingDirectory)
+      set -e 
       curl -L https://github.com/appknox/appknox-go/releases/download/1.0.1/appknox-`uname -s`-x86_64 > appknox && chmod +x appknox
       ./appknox upload $(build.ArtifactStagingDirectory)/app/build/outputs/apk/debug/app-debug.apk
       rm -f appknox
