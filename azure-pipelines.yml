@@ -27,5 +27,5 @@ steps:
     script: |
       set -e 
       curl -L https://github.com/appknox/appknox-go/releases/download/1.0.1/appknox-`uname -s`-x86_64 > appknox && chmod +x appknox
-      ./appknox upload ./app/build/outputs/apk/app-debug.apk
+      ./appknox upload ./app/build/outputs/apk/app-debug.apk | xargs appknox cicheck --risk-threshold medium
       rm -f appknox
