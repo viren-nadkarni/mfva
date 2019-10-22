@@ -10,6 +10,15 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'sks444'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
 - task: Gradle@2
   inputs:
     workingDirectory: ''
@@ -18,9 +27,6 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
-- task: GitHubIssue@0
-  inputs:
-    githubEndpoint: 'sks444'
 - task: Bash@3
   env:
     APPKNOX_ACCESS_TOKEN: $(appknox_token)
