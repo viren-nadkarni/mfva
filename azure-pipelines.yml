@@ -27,6 +27,7 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
+
 - task: appknox-security-test@0
   inputs:
     filepath: './app/build/outputs/apk/app-debug.apk'
