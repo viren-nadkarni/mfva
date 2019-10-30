@@ -22,5 +22,5 @@ steps:
 - task: appknox-security-test-test@0
   inputs:
     filepath: './app/build/outputs/apk/app-debug.apk'
-    accessToken: '$access_token'
+    accessToken: '$(access_token)'
     riskThreshold: 'medium'
