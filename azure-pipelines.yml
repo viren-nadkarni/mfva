@@ -19,7 +19,7 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
 
-- task: appknox-security-test-test@0
+- task: appknox-security-test@0
   inputs:
     filepath: './app/build/outputs/apk/app-debug.apk'
     accessToken: '$(access_token)'
