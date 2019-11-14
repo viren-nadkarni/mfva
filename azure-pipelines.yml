@@ -11,6 +11,7 @@ pool:
 
 steps:
 - task: Gradle@2
+
   inputs:
     workingDirectory: ''
     gradleWrapperFile: 'gradlew'
@@ -18,7 +19,8 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
-- task: appknox@0
+
+- task: appknox-test@0
   inputs:
     filePath: './app/build/outputs/apk/app-debug.apk'
     accessToken: '$(access_token)'
