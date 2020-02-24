@@ -25,9 +25,3 @@ steps:
     filePath: './app/build/outputs/apk/debug/app-debug.apk'
     accessToken: '$(access_token)'
     riskThreshold: 'medium'
-
-# - task: appknox@0
-#   inputs:
-#     filePath: './app/build/outputs/apk/app-debug.apk'
-#     accessToken: '$(access_token)'
-#     riskThreshold: 'low'
