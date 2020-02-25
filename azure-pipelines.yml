@@ -23,8 +23,8 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
 
-- task: appknox@0
+- task: AppknoxTest@1
   inputs:
     filePath: './app/build/outputs/apk/debug/app-debug.apk'
-    accessToken: $(appknoxtoken)
+    accessToken: '$(appknoxtoken)'
     riskThreshold: 'low'
