@@ -9,9 +9,6 @@ trigger:
 pool:
   vmImage: 'macOS-latest'
 
-variables:
-- group: MFVA
-
 steps:
 - task: Gradle@2
 
