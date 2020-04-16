@@ -22,9 +22,9 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
-
+  
 - task: Appknox@1
   inputs:
     filePath: './app/build/outputs/apk/debug/app-debug.apk'
     accessToken: '$(appknoxtoken)'
-    riskThreshold: 'low'
+    riskThreshold: 'high'
