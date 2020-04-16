@@ -19,13 +19,13 @@ public class ExportedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exported);
 
-        Log.d("redis", "Initialising jedis...");
-        Jedis jedis = new Jedis("localhost");
+        // Log.d("redis", "Initialising jedis...");
+        // Jedis jedis = new Jedis("localhost");
 
-        try {
-            Cipher.getInstance("DES/ECB/ZeroBytePadding", "BC");
-        } catch (NoSuchAlgorithmException|NoSuchProviderException|NoSuchPaddingException e) {
-            // pass
-        }
+        // try {
+        //     Cipher.getInstance("DES/ECB/ZeroBytePadding", "BC");
+        // } catch (NoSuchAlgorithmException|NoSuchProviderException|NoSuchPaddingException e) {
+        //     // pass
+        // }
     }
 }
