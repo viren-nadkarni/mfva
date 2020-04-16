@@ -36,7 +36,7 @@
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
-            android:exported="true"
+            android:exported="false"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
 
