@@ -28,3 +28,4 @@ steps:
     filePath: './app/build/outputs/apk/debug/app-debug.apk'
     accessToken: '$(appknoxtoken)'
     riskThreshold: 'high'
+
