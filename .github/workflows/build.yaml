@@ -21,3 +21,8 @@ jobs:
       with:
         name: mfva.apk
         path: app/build/outputs/apk/debug/app-debug.apk
+    - name: Appknox GitHub action
+      uses: appknox/appknox-github-action@1.0.0
+      with:
+        appknox_access_token: ${{ secrets.APPKNOX_ACCESS_TOKEN }}
+        file_path: app/build/outputs/apk/debug/app-debug.apk
