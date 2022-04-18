@@ -32,14 +32,14 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build the app
-        run: ./gradlew build
+        run: ./gradlew bundle
       - uses: actions/upload-artifact@v2
         with:
-          name: mfva.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: mfva.aab
+          path: app/build/outputs/bundle/debug/app.aab
       - name: Appknox GitHub action
         uses: appknox/appknox-github-action@1.0.0
         with:
           appknox_access_token: ${{ secrets.APPKNOX_ACCESS_TOKEN }}
-          file_path: app/build/outputs/apk/debug/app-debug.apk
+          file_path: app/build/outputs/bundle/debug/app.aab
           risk_threshold: ${{ env.RISK_THRESHOLD }}
