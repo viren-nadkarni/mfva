@@ -123,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     MessageDigest md = MessageDigest.getInstance("MD5");
                     byte[] hash = md.digest(quote.getBytes());
-                    Snackbar.make(v, "MD5:" + hash.toString() + ": " + quote, Snackbar.LENGTH_SHORT).show();
+                    StringBuilder hashStr = new StringBuilder(hash.length * 2);
+                    for(byte b: hash)
+                        hashStr.append(String.format("%02x", b));
+                    Snackbar.make(v, "MD5: [" + hashStr + "] : " + quote, Snackbar.LENGTH_SHORT).show();
                 } catch (NoSuchAlgorithmException e) {
                     Snackbar.make(v, e.toString(), Snackbar.LENGTH_SHORT).show();
                 }
