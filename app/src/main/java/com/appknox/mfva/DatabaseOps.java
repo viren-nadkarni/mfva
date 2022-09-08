@@ -24,7 +24,6 @@ import static com.appknox.mfva.TableData.TableInfo.TABLE_NAME;
 
     public DatabaseOps(Context context) {
 
-
         super(context, TableData.TableInfo.DATABASE_NAME, null, data_version);
     }
 
