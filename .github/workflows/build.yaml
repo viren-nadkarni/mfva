@@ -43,3 +43,8 @@ jobs:
           appknox_access_token: ${{ secrets.APPKNOX_ACCESS_TOKEN }}
           file_path: app/build/outputs/bundle/debug/app.aab
           risk_threshold: ${{ env.RISK_THRESHOLD }}
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            Hello world ! :wave:
